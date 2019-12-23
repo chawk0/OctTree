@@ -1,0 +1,147 @@
+for wireframes, just make one vao, one vbo (pos + color), one ibo with 2 loops of gl_line_strip, recompute world matrix to account for the node's translation and scale, and make 2 calls to drawelements. this is way better than making a separate VAO, VBO, and IBO per node.  wtf
+
+
+so, for the wireframe:
+during octree init:
+
+	create one vbo and ibo for the (single) wireframe cube
+
+during render:
+	
+	compute individual worldmat per node, including trans and scale
+	2x drawelements
+
+
+
+one giant VBO for all the leaf data.
+
+
+for the leaf buffer:
+during octree recurse:
+
+	search through the region of the leaf node
+
+	check voxel id
+
+	map it to the segment that made it via _segmentMap
+
+	build geometry from visible faces, writing into giant VBO with 2 float ptrs
+
+	save elementcount and offset
+
+during octree post-build
+
+	create giant VBO
+
+during octree render:
+	wireframe pass
+		bind vao for wireframe cube
+		for each node
+			translate and scale cube to correspond to node region
+			2x drawelements
+	terrain pass
+		setup vertex attrib parameters; pos + color, offsets, etc
+		for each node
+			bind the node's vbo
+			drawarrays with node's elementcount
+
+
+
+
+
+
+
+needed to progress to physics testing:
+
+	refactor/update sceneobject
+
+	create entity class
+
+	create physics engine/system/wtfe class
+
+	generalize 3d solid shape classes?
+
+	create some notion of forces and assign controls to them
+
+	create this crazy roaming AABB algorithm where it collides with
+		octree nodes and gets really crazy at node corners.  loop
+		through all constituent voxels, doing cylinder(?) vs AABB
+		collision tests and prevent motion somehow.
+
+	compute collisions/kinematics, and update meshes
+
+	render terrain -> meshes -> yay?
+
+
+the more I abstract config "code" for various class instances into text config data
+loaded from disk, the better?
+
+ALSO
+
+rewrite Texture
+
+investigate Font rendering
+
+play with multi-threading	done!
+
+REWRITE MESH, use the generalized structs in the global header and rewrite the .obj format
+
+add concatenated view/proj matrix functionality to the camera, dirty flag, etc
+
+eventually, abstract the render targets (default framebuffer, other render buffers, depth, 	etc), and have them link to cameras via engine!
+
+
+THINK ABOUT whether individual entity defs deserve their own shader, do they draw from a 		pool of shaders loaded by engine?  how does that work... prefer multiple shaders 		over lots of if() branching in one big shader
+
+
+
+WSAStartup
+client:
+	getaddrinfo/gethostbyname/gethostbyaddr
+	socket
+	connect
+	send/recv/etc
+	shutdown
+	closesocket
+
+server:
+	getaddrinfo/gethostbyname/gethostbyaddr
+	socket
+	bind
+	listen
+	accept
+	send/recv/etc
+	shutdown
+	closesocket
+WSACleanup
+
+
+physics engine init:
+
+	as entities are added, need to compute which octree node they're in, then build
+		the list of voxels to test against for terrain collisions
+
+physics engine loop:
+
+	calc kinematics for all objects and store(?), double buffer the object pos?
+
+	using that, test roaming AABB vs the current node.  if there are collisions
+		then recompute all involved nodes, then rebuild voxel list (blarg?)
+
+	test collision between objects vs terrain (ideally obj[i]->cv* vs aabox*?) and
+		objects vs objects (later on)
+
+	based on that, compute reaction forces (if any), damping, etc
+
+	compute final version of kinematic stuffs for all objects
+
+	ready for render!
+
+
+
+
+LATER ON
+
+[15:32:46] <SoM-one> server updates physics and sends network updates x times/sec, clients interpolate velocity and angular velocity based off that information on their render threads, the local player object has full autonomy on clients but ALSO is simulated on the server and if they desync significantly the server forces the player object to warp back on the client
+[15:32:53] <SoM-one> that basically covers all of it
+

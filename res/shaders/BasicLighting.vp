@@ -1,0 +1,26 @@
+#version 330
+
+uniform mat4 WVPMatrix;
+uniform mat4 worldMatrix;
+uniform mat4 lightWVPMatrix;
+
+layout (location = 0) in vec3 pos;
+layout (location = 1) in vec3 color;
+layout (location = 2) in vec3 normal;
+layout (location = 3) in vec2 uv0;
+
+out vec3 pos0;
+out vec3 color0;
+out vec2 uv00;
+out vec3 normal0;
+out vec4 lightSpacePos0;
+
+void main()
+{
+    gl_Position = WVPMatrix * vec4(pos, 1.0);
+	normal0 = (worldMatrix * vec4(normal, 0.0)).xyz;
+    pos0 = (worldMatrix * vec4(pos, 1.0)).xyz;
+	lightSpacePos0 = lightWVPMatrix * vec4(pos, 1.0);
+    color0 = color;
+	uv00 = uv0;
+}

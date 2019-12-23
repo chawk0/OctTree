@@ -1,0 +1,52 @@
+
+function naming pairs:
+
+	init/cleanup		// for large systems and stuff?
+
+	create/destroy		// for abstract things like render objects?
+
+	load/clear		// moreso for data just loaded into memory?
+
+	alloc/free		// for Array<>
+
+
+
+size identifier naming:
+
+	length			// for raw byte data buffers
+
+	size			// for lists and containers of objects
+
+	count			// specifically when a count is being tallied
+
+
+
+class definition:
+
+	bring in the public/private parts, tab in 1
+
+	NO CODE AT ALL, only declarations.
+
+	trim down includes to only what that class needs
+
+	initializer lists!
+
+	rule of 3?
+
+	use destroy/cleanup/etc function in destructor and "clean" flag?
+
+	APPLY CONST AS NEEDED, const refs, const funcs, etc
+
+	prefer object pointers to statically instantiated members
+
+
+
+other codey goals:
+
+	try to incorporate try/catch on critical fails, otherwise...
+
+	CREATE NIFTY LOGGING CLASS
+
+	REWRITE TEXTURE AND MESH
+
+	unify the geometric types into one Geometry.h

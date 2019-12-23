@@ -1,0 +1,51 @@
+﻿Build started 5/4/2018 8:38:02 PM.
+     1>Project "C:\Users\Phil\Programming\ChawkFortress\ChawkFortress.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\ChawkFortress.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\\" /Fd"C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\vc100.pdb" /Gd /TP /errorReport:prompt src\Engine.cpp src\Main.cpp src\Timer.cpp src\World.cpp
+         Engine.cpp
+         Main.cpp
+         Timer.cpp
+         World.cpp
+     1>src\World.cpp(412): warning C4482: nonstandard extension used: enum 'Segment::DataSourceType' used in qualified name
+     1>src\World.cpp(427): warning C4482: nonstandard extension used: enum 'Segment::DataSourceType' used in qualified name
+     1>src\World.cpp(495): warning C4482: nonstandard extension used: enum 'Segment::DataSourceType' used in qualified name
+     1>src\World.cpp(533): warning C4482: nonstandard extension used: enum 'Segment::DataSourceType' used in qualified name
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\ChawkFortress.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib opengl32.lib glu32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib freetype265d.lib /MANIFEST /ManifestFile:"C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\ChawkFortress.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\ChawkFortress.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\ChawkFortress.lib" /MACHINE:X64 C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\AABox.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Camera.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Engine.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Entity.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Font.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Frustum.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Light.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Log.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Main.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Matrix.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Octree.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Perlin.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\PhysicsEngine.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Quaternion.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Mesh.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Shader.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Sketch.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Texture.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Timer.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\Vector.obj
+         C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\World.obj
+            Creating library C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\ChawkFortress.lib and object C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\ChawkFortress.exp
+     1>LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+         Generating code
+         Finished generating code
+         ChawkFortress.vcxproj -> C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\ChawkFortress.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\ChawkFortress.exe;#1" /manifest C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\ChawkFortress.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\ChawkFortress.unsuccessfulbuild".
+         Touching "C:\Users\Phil\Programming\ChawkFortress\bin\x64\Release\int\ChawkFortress.lastbuildstate".
+     1>Done Building Project "C:\Users\Phil\Programming\ChawkFortress\ChawkFortress.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.32

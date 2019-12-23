@@ -1,0 +1,53 @@
+[Chat 2014-02-28 22:27:00] <chawk> for that, I had planned to actually add 1 data member to the base class, like a uint type; or something
+[Chat 2014-02-28 22:27:01] <?Ssomaeshza?> I guess we have to do the runtime type determination regardless
+[Chat 2014-02-28 22:27:03] <chawk> then I could check that
+[Chat 2014-02-28 22:27:15] <chawk> on the constructors of the derived classes, I can set it to some constant
+[Chat 2014-02-28 22:27:51] <chawk> so like if (obj1->getType() == Shape::Sphere && obj2->getType() == Shape::AABox)  { _testSphereAABox(obj1, obj2); }
+[Chat 2014-02-28 22:27:52] <chawk> that sorta dealy
+[Chat 2014-02-28 22:28:03] <?Ssomaeshza?> so much if
+[Chat 2014-02-28 22:28:05] <chawk> + casting or whatever
+[Chat 2014-02-28 22:28:07] <chawk> meh!
+[Chat 2014-02-28 22:31:25] <chawk> you need (N choose 2) number of if thingers, and I can think of about 5 collision volumes I'd want to use
+[Chat 2014-02-28 22:31:27] <chawk> and that equals 10
+[Chat 2014-02-28 22:31:35] <chawk> s'not bad
+[Chat 2014-02-28 22:31:55] <*WhiteStar*[2.2]> without putting tons of thought
+[Chat 2014-02-28 22:31:58] <*WhiteStar*[2.2]> here is my method
+[Chat 2014-02-28 22:32:19] <*WhiteStar*[2.2]> Shape has collide(SHape*)
+[Chat 2014-02-28 22:32:36] <*WhiteStar*[2.2]> switch(shape2->type)
+[Chat 2014-02-28 22:32:52] <?Ssomaeshza?> hmm
+[Chat 2014-02-28 22:32:55] <*WhiteStar*[2.2]> but the actual methods that do the comparison are static elsewhere
+[Chat 2014-02-28 22:33:08] <*WhiteStar*[2.2]> you don't reimplement Square::collide(Sphere*)
+[Chat 2014-02-28 22:33:12] <*WhiteStar*[2.2]> or. cube. whatever
+[Chat 2014-02-28 22:33:17] <?Ssomaeshza?> I suppose you can avoid doublecoding that way
+[Chat 2014-02-28 22:33:20] <*WhiteStar*[2.2]> you DO create static shapevs.shape
+[Chat 2014-02-28 22:33:25] <*WhiteStar*[2.2]> but you let the object determine which to call
+[Chat 2014-02-28 22:33:59] <chawk> I'm not sure I follow ><
+[Chat 2014-02-28 22:34:14] <?Ssomaeshza?> um..do what you want to do in your physics engine thing, but do it in Shape instead
+[Chat 2014-02-28 22:34:20] <*WhiteStar*[2.2]> um.
+[Chat 2014-02-28 22:34:21] <chawk> oh
+[Chat 2014-02-28 22:34:29] <*WhiteStar*[2.2]> Ellipsoid has collide(Shape*)
+[Chat 2014-02-28 22:34:50] <*WhiteStar*[2.2]> case Shape::Cube: Shape::collide(Cube*,Ellipsoid*)
+[Chat 2014-02-28 22:34:58] <?Ssomaeshza?> the important part is that it keeps the methods with the objects like I wanted
+[Chat 2014-02-28 22:36:18] <chawk> so each derived class will have this funky switch map that jumps to a static function in Shape
+[Chat 2014-02-28 22:36:20] <chawk> hmm
+[Chat 2014-02-28 22:36:54] <*WhiteStar*[2.2]> it is a cheap way to do the method determination
+[Chat 2014-02-28 22:37:01] <*WhiteStar*[2.2]> and allows for special cases easily enough
+[Chat 2014-02-28 22:37:45] <chawk> though, to invoke a particule derived class's implementation of collide(Shape*), I first need to identify the pointer, right?
+[Chat 2014-02-28 22:37:49] <chawk> er particular*
+[Chat 2014-02-28 22:38:04] <*WhiteStar*[2.2]> the type switch tells you that. you just cast it beyond that
+[Chat 2014-02-28 22:39:03] <chawk> what I mean is, how do we know to jump into Ellipsoid::collide() vs someotherclass:collide()
+[Chat 2014-02-28 22:39:07] <chawk> if we start with 2 Shape*'s
+[Chat 2014-02-28 22:39:19] <chawk> we gotta some switch!
+[Chat 2014-02-28 22:39:33] <chawk> then in the collide function for that class, there's another switch
+[Chat 2014-02-28 22:39:33] <*WhiteStar*[2.2]> uh.
+[Chat 2014-02-28 22:39:34] <*WhiteStar*[2.2]> you don't?
+[Chat 2014-02-28 22:39:39] <*WhiteStar*[2.2]> shape1->collide(shape2)
+[Chat 2014-02-28 22:39:40] <*WhiteStar*[2.2]> who fucking cares
+[Chat 2014-02-28 22:39:41] <chawk> to call the correct Shape static function
+[Chat 2014-02-28 22:39:58] <chawk> buuuh, hmm
+[Chat 2014-02-28 22:40:12] <chawk> oh okay that's a derived function of the base class, so you get the built-in RTTI vtable stuff?
+[Chat 2014-02-28 22:40:17] <*WhiteStar*[2.2]> right
+[Chat 2014-02-28 22:40:24] <chawk> right right, okay
+[Chat 2014-02-28 22:40:29] <chawk> I think I follow :3
+[Chat 2014-02-28 22:41:19] <chawk> interesting interesting
+[Chat 2014-02-28 22:48:40] <*WhiteStar*[2.2]> it's not exactly elegant but it's pratical

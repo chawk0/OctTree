@@ -1,0 +1,22 @@
+voxels 4
+
+voxel
+name soil
+tex ./res/textures/grass.bmp
+#tex ./res/textures/noise_grass.bmp
+end
+
+voxel
+name water
+tex ./res/textures/water copy.png
+end
+
+voxel
+name stone
+tex ./res/textures/floor1.bmp
+end
+
+voxel
+name cloud
+tex ./res/textures/clouds.bmp
+end

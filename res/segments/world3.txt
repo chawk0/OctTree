@@ -1,0 +1,17 @@
+name Chawkland3
+size 512
+
+segment
+name water
+madeof water
+blend
+visiblethrough 0
+data file ./res/segments/water_512.dat
+end
+
+segment
+name terrain
+madeof soil
+visiblethrough 1 2
+data perlin 0.005 0.50
+end

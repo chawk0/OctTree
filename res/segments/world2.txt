@@ -1,0 +1,16 @@
+name Chawkland2
+size 256
+
+segment
+name smooth
+madeof soil
+visiblethrough 1 2
+data perlin 0.001 0.25
+end
+
+segment
+name rough
+madeof water
+visiblethrough 0
+data perlin 0.025 0.5
+end

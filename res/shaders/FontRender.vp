@@ -1,0 +1,16 @@
+#version 330
+
+uniform mat4 WVPMatrix;
+
+layout (location = 0) in vec4 pos_uv;
+layout (location = 1) in vec3 color;
+
+out vec3 color0;
+out vec2 uv0;
+
+void main()
+{
+    gl_Position = WVPMatrix * vec4(pos_uv.xy, -1.0, 1.0);
+    color0 = color;
+    uv0 = pos_uv.zw;
+}

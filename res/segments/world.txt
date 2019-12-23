@@ -1,0 +1,19 @@
+name Chawkland
+size 256
+
+segment
+name water
+madeof water
+visiblethrough 0
+data file ./res/segments/water.dat
+end
+
+segment
+name soil
+madeof soil
+visiblethrough 1 2
+data perlin 0.0075 0.4
+end
+
+
+

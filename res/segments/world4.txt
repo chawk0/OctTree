@@ -1,0 +1,25 @@
+name Chawkland4
+size 512
+segments 3
+
+segment
+name water_layer
+madeof water
+visiblethrough 0
+blend
+data file ./res/segments/water_512.dat
+end
+
+segment
+name soil_layer
+madeof soil
+visiblethrough 1 water
+data perlin 0.0075 0.5 0.5
+end
+
+segment
+name stone_layer
+madeof stone
+visiblethrough 1 water
+data perlin 0.001 0.5 0.6
+end
